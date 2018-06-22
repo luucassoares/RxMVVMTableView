@@ -7,18 +7,13 @@
 //
 
 import UIKit
-
-
-protocol TodoView: class {
-    func insertTodoItem() -> ()
-    func deleteTodoItem(at index: Int) -> ()
-    func onUpdateTodoItem(at index: Int) -> ()
-    func reloadItems() -> ()
-}
-
+import RxSwift
+import RxCocoa
+ 
 class ViewController: UIViewController {
     
     let identifier = "todoItemCellIdentifier"
+    let disposeBag = DisposeBag()
     
     @IBOutlet weak var newItemTextField: UITextField!
     @IBOutlet weak var tablewViewItems: UITableView!
@@ -32,7 +27,11 @@ class ViewController: UIViewController {
         let nib = UINib(nibName: "TodoItemTableViewCell", bundle: nil)
         tablewViewItems.register(nib, forCellReuseIdentifier: identifier)
         
-        viewModel = TodoViewModel(view: self)
+        viewModel = TodoViewModel( )
+        viewModel?.items.asObservable().bind(to: tablewViewItems.rx.items(cellIdentifier: identifier, cellType: TodoItemTableViewCell.self)) { index, item, cell in
+            cell.configure(withViewModel: item)
+            
+            }.disposed(by: disposeBag)
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,31 +54,18 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (viewModel?.items.count)!
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? TodoItemTableViewCell
-        
-        let itemViewModel = viewModel?.items[indexPath.row]
+extension ViewController: UITableViewDelegate {
   
-        cell?.configure(withViewModel: itemViewModel!)
-        return cell!
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print((viewModel?.items[indexPath.row])?.textValue ?? "Nao")
-        let itemViewModel = viewModel?.items[indexPath.row]
+        let itemViewModel = viewModel?.items.value[indexPath.row]
         
         (itemViewModel as? TodoItemViewDelegate)?.onItemSelected() 
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let itemViewModel = viewModel?.items[indexPath.row]
+        let itemViewModel = viewModel?.items.value[indexPath.row]
         
         var actions: [UIContextualAction] = []
         _ = itemViewModel?.menuItems?.map({ menuItem in
@@ -107,46 +93,5 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
 
-}
-
-extension ViewController: TodoView {
-    func deleteTodoItem(at index: Int) {
-        
-        
-        DispatchQueue.main.async {
-            
-            self.tablewViewItems.beginUpdates()
-            self.tablewViewItems.deleteRows(at: [IndexPath(row: index, section: 0)], with: UITableViewRowAnimation.automatic)
-            self.tablewViewItems.endUpdates()
-        }
-    }
-    
-    func insertTodoItem() {
-        
-        guard let items = viewModel?.items else {
-            print("list is empty")
-            return
-        }
-        
-        DispatchQueue.main.async(execute: { () -> Void in
-            self.newItemTextField.text = self.viewModel?.newTodoItem
-            self.tablewViewItems.beginUpdates()
-            self.tablewViewItems.insertRows(at: [IndexPath(row: items.count-1, section: 0)], with: UITableViewRowAnimation.automatic)
-            self.tablewViewItems.endUpdates()
-            })
-
-    }
-    
-    func onUpdateTodoItem(at index: Int) {
-        DispatchQueue.main.async {
-            self.tablewViewItems.reloadRows(at: [IndexPath(row: index, section: 0)], with: UITableViewRowAnimation.automatic)
-        }
-    }
-    
-    func reloadItems() {
-        DispatchQueue.main.async {
-            self.tablewViewItems.reloadData()
-        }
-    }
 }
 

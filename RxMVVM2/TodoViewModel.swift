@@ -1,3 +1,5 @@
+import RxSwift
+
 protocol TodoMenuItemViewPresentable {
     var title: String? { get set }
     var backColor: String? { get }
@@ -89,19 +91,17 @@ protocol TodoViewPresentable {
     var newTodoItem: String? { get }
 }
 
-class TodoViewModel {
+class TodoViewModel: TodoViewPresentable {
 
-    weak var view: TodoView?
     var newTodoItem: String?
-    var items: [TodoItemPresentable] = []
+    var items: Variable<[TodoItemPresentable]> = Variable([])
     
-    init(view: TodoView?) {
-        self.view = view
+    init() {
         let item1 = TodoItemViewModel(id: "1", textValue: "Ir ao mercado", parentViewModel: self)
         let item2 = TodoItemViewModel(id: "2", textValue: "Ir ao dentista", parentViewModel: self)
         let item3 = TodoItemViewModel(id: "3", textValue: "Ir ao médico", parentViewModel: self )
         
-         items.append(contentsOf: [
+         items.value.append(contentsOf: [
         item1,
         item2,
         item3])
@@ -110,13 +110,13 @@ class TodoViewModel {
 
 extension TodoViewModel: TodoViewDelegate {
     func onDeleteTodoItem(todoId: String) {
-        guard let index = self.items.index(where: {$0.id! == todoId}) else {
+        guard let index = self.items.value.index(where: {$0.id! == todoId}) else {
             print("todoId not exists")
             return
         }
         
-        self.items.remove(at: index)
-        view?.deleteTodoItem(at: index)
+        self.items.value.remove(at: index)
+        
     }
     
     func onAddTodoItem() {
@@ -129,23 +129,23 @@ extension TodoViewModel: TodoViewDelegate {
         
         
         
-        let itemIndex = String(items.count + 1)
+        let itemIndex = String(items.value.count + 1)
         let newItem = TodoItemViewModel(id: "\(itemIndex)", textValue: newValue, parentViewModel: self)
-        self.items.append(newItem)
+        self.items.value.append(newItem)
         self.newTodoItem = ""
-        self.view?.insertTodoItem()
+//        self.view?.insertTodoItem()
         
     }
     
     func onDoneTodoItem(todoId: String) {
         print("Todo item done with: \(todoId)")
         
-        guard let index = self.items.index(where: {$0.id! == todoId}) else {
+        guard let index = self.items.value.index(where: {$0.id! == todoId}) else {
             print("todoId not exists")
             return
         }
         
-        var todoItem = self.items[index]
+        var todoItem = self.items.value[index]
         
         let _isDone = !(todoItem.isDone)!
         
@@ -156,7 +156,7 @@ extension TodoViewModel: TodoViewDelegate {
             doneMenuItem.title = todoItem.isDone! ? "Undone" : "Done"
         }
 
-        self.items.sort(by: {
+        self.items.value.sort(by: {
             
             if !($0.isDone!) && !($1.isDone!) {
                 return $0.id! < $1.id!
@@ -169,7 +169,7 @@ extension TodoViewModel: TodoViewDelegate {
             return !($0.isDone)! && $1.isDone!
         })
         
-        self.view?.reloadItems()
+        
     }
     
 }
