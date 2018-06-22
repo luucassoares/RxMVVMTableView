@@ -1,14 +1,5 @@
-//
-//  TodoViewModel.swift
-//  RxMVVM2
-//
-//  Created by Lucas Soares on 21/06/18.
-//  Copyright © 2018 Lucas Soares. All rights reserved.
-//
-
-
 protocol TodoMenuItemViewPresentable {
-    var title: String? { get }
+    var title: String? { get set }
     var backColor: String? { get }
 }
 
@@ -159,9 +150,27 @@ extension TodoViewModel: TodoViewDelegate {
         let _isDone = !(todoItem.isDone)!
         
         todoItem.isDone = _isDone
-        self.view?.onUpdateTodoItem(at: index)
+        if var doneMenuItem = todoItem.menuItems?.filter({ (todoMenuitem) -> Bool in
+            todoMenuitem is DoneMenuItemViewModel
+        }).first {
+            doneMenuItem.title = todoItem.isDone! ? "Undone" : "Done"
+        }
+
+        self.items.sort(by: {
+            
+            if !($0.isDone!) && !($1.isDone!) {
+                return $0.id! < $1.id!
+            }
+            
+            if $0.isDone! && $1.isDone! {
+                return $0.id! < $1.id!
+            }
+            
+            return !($0.isDone)! && $1.isDone!
+        })
+        
+        self.view?.reloadItems()
     }
-    
     
 }
 
