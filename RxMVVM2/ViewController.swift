@@ -15,10 +15,11 @@ class ViewController: UIViewController {
     let identifier = "todoItemCellIdentifier"
     let disposeBag = DisposeBag()
     
+    var actIndicator: UIActivityIndicatorView!
     @IBOutlet weak var newItemTextField: UITextField!
     @IBOutlet weak var tablewViewItems: UITableView!
     
-    var viewModel: TodoViewModel?
+    var viewModel = TodoViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +28,39 @@ class ViewController: UIViewController {
         let nib = UINib(nibName: "TodoItemTableViewCell", bundle: nil)
         tablewViewItems.register(nib, forCellReuseIdentifier: identifier)
         
-        viewModel = TodoViewModel( )
-        viewModel?.items.asObservable().bind(to: tablewViewItems.rx.items(cellIdentifier: identifier, cellType: TodoItemTableViewCell.self)) { index, item, cell in
-            cell.configure(withViewModel: item)
-            
+        actIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        actIndicator.center = self.view.center
+        actIndicator.hidesWhenStopped = true
+        actIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        self.view.addSubview(actIndicator)
+
+        bindUI()
+        
+    }
+    
+    func bindUI () {
+        //        viewModel?.items.asObservable().bind(to: tablewViewItems.rx.items(cellIdentifier: identifier, cellType: TodoItemTableViewCell.self)) { index, item, cell in
+        //            cell.configure(withViewModel: item)
+        //
+        //            }.disposed(by: disposeBag)
+        
+        viewModel.items.asDriver().drive(
+        tablewViewItems.rx.items(cellIdentifier: identifier, cellType: TodoItemTableViewCell.self)) { row, model, cell in
+            cell.configure(withViewModel: model)
             }.disposed(by: disposeBag)
+        
+        tablewViewItems.rx.itemSelected.subscribe(onNext: {[weak self] indexPath in
+            
+            let itemViewModel = self?.viewModel.items.value[indexPath.row]
+            (itemViewModel as? TodoItemViewDelegate)?.onItemSelected()
+            
+            
+        }).disposed(by: disposeBag)
+        
+        
+        viewModel.showActivityIndicator.asDriver()
+            .drive(actIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,30 +74,23 @@ class ViewController: UIViewController {
             print("no value entered")
             return
         }
-        viewModel?.newTodoItem = valueTyped
+        viewModel.newTodoItem = valueTyped
         
         DispatchQueue.global(qos: .userInitiated).async() {
             
-            self.viewModel?.onAddTodoItem()
+            self.viewModel.onAddTodoItem()
         }
     }
 }
 
 extension ViewController: UITableViewDelegate {
-  
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let itemViewModel = viewModel?.items.value[indexPath.row]
-        
-        (itemViewModel as? TodoItemViewDelegate)?.onItemSelected() 
-    }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let itemViewModel = viewModel?.items.value[indexPath.row]
+        let itemViewModel = viewModel.items.value[indexPath.row]
         
         var actions: [UIContextualAction] = []
-        _ = itemViewModel?.menuItems?.map({ menuItem in
+        _ = itemViewModel.menuItems?.map({ menuItem in
             let menuAction = UIContextualAction(style: .normal, title: menuItem.title) { (action, sourceView, success: (Bool) -> (Void)) in
                 
                 if let delegate = menuItem as? TodoMenuViewItemDelegate {

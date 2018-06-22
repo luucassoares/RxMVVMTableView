@@ -95,16 +95,20 @@ class TodoViewModel: TodoViewPresentable {
 
     var newTodoItem: String?
     var items: Variable<[TodoItemPresentable]> = Variable([])
+    var showActivityIndicator = Variable<Bool>(true)
     
     init() {
+           DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
         let item1 = TodoItemViewModel(id: "1", textValue: "Ir ao mercado", parentViewModel: self)
         let item2 = TodoItemViewModel(id: "2", textValue: "Ir ao dentista", parentViewModel: self)
         let item3 = TodoItemViewModel(id: "3", textValue: "Ir ao médico", parentViewModel: self )
         
-         items.value.append(contentsOf: [
+         self.items.value.append(contentsOf: [
         item1,
         item2,
         item3])
+        self.showActivityIndicator.value = false
+    }
     }
 }
 
