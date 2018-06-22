@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--TODO Items-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController title="TODO Items" id="BYZ-38-t0r" customClass="ViewController" customModule="RxMVVM2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter todo item" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="YQz-vH-YV9">
+                                <rect key="frame" x="8" y="72" width="359" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="3bW-Yy-FGj"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="j1B-AF-lue">
+                                <rect key="frame" x="0.0" y="182" width="375" height="485"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="2aq-Ls-tl9"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="7u2-fo-4Z4"/>
+                                </connections>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pkz-hb-Q5b">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="TODO Items" id="m13-c3-h4v"/>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3O3-AU-bqB">
+                                <rect key="frame" x="8" y="129" width="359" height="45"/>
+                                <color key="backgroundColor" red="1" green="0.80125092350000005" blue="0.348932205" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="2um-FD-MO5"/>
+                                </constraints>
+                                <state key="normal" title="Add item"/>
+                                <connections>
+                                    <action selector="addBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uzI-2Q-MfF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Pkz-hb-Q5b" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="3v4-OD-6Se"/>
+                            <constraint firstItem="j1B-AF-lue" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="6kR-2k-TDf"/>
+                            <constraint firstItem="3O3-AU-bqB" firstAttribute="top" secondItem="YQz-vH-YV9" secondAttribute="bottom" constant="7" id="6oF-y3-Ueg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3O3-AU-bqB" secondAttribute="trailing" constant="8" id="86h-fV-G1I"/>
+                            <constraint firstItem="Pkz-hb-Q5b" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Al4-tH-xcJ"/>
+                            <constraint firstItem="YQz-vH-YV9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="Euj-jt-LKf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YQz-vH-YV9" secondAttribute="trailing" constant="8" id="SZM-YC-lwi"/>
+                            <constraint firstItem="j1B-AF-lue" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SZV-og-lBR"/>
+                            <constraint firstItem="3O3-AU-bqB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="U2n-TA-2HD"/>
+                            <constraint firstItem="j1B-AF-lue" firstAttribute="top" secondItem="3O3-AU-bqB" secondAttribute="bottom" constant="8" id="aKu-HZ-cgM"/>
+                            <constraint firstItem="j1B-AF-lue" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="dQt-g6-n5r"/>
+                            <constraint firstItem="YQz-vH-YV9" firstAttribute="top" secondItem="Pkz-hb-Q5b" secondAttribute="bottom" constant="8" id="dUQ-H6-R4f"/>
+                            <constraint firstItem="Pkz-hb-Q5b" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="pLX-fw-U3T"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="TODO Items" id="O3E-fT-i5G"/>
+                    <connections>
+                        <outlet property="newItemTextField" destination="YQz-vH-YV9" id="eKQ-NA-QI1"/>
+                        <outlet property="tablewViewItems" destination="j1B-AF-lue" id="hPk-Io-eUl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="976.79999999999995" y="31.934032983508249"/>
+        </scene>
+    </scenes>
+</document>
