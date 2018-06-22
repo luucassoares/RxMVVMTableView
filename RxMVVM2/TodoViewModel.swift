@@ -100,7 +100,7 @@ class TodoViewModel {
         let item1 = TodoItemViewModel(id: "1", textValue: "Ir ao mercado", parentViewModel: self)
         let item2 = TodoItemViewModel(id: "2", textValue: "Ir ao dentista", parentViewModel: self)
         let item3 = TodoItemViewModel(id: "3", textValue: "Ir ao médico", parentViewModel: self )
-
+        
          items.append(contentsOf: [
         item1,
         item2,
