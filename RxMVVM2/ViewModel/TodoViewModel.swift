@@ -95,7 +95,8 @@ class TodoViewModel: TodoViewPresentable {
 
     var newTodoItem: String?
     var items: Variable<[TodoItemPresentable]> = Variable([])
-    var showActivityIndicator = Variable<Bool>(true)
+    var showActivityIndicator = Variable<Bool>(false)
+    
     
     init() {
            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
