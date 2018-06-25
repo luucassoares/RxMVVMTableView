@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		691D3637A38CD3CA0AD7B722 /* Pods_RxMVVM2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6AB296B330D3AB6F12EB4BA /* Pods_RxMVVM2.framework */; };
+		DE7C85B820E11E8000C066E3 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7C85B720E11E8000C066E3 /* ContactsViewController.swift */; };
+		DE7C85BA20E1230F00C066E3 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7C85B920E1230F00C066E3 /* ContactsViewModel.swift */; };
+		DE7C85BD20E1234500C066E3 /* ContactsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7C85BC20E1234500C066E3 /* ContactsService.swift */; };
+		DE7C85C020E1236F00C066E3 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7C85BF20E1236F00C066E3 /* CountryModel.swift */; };
+		DE7C85C420E1286900C066E3 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7C85C220E1286900C066E3 /* ContactsTableViewCell.swift */; };
+		DE7C85C520E1286900C066E3 /* ContactsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE7C85C320E1286900C066E3 /* ContactsTableViewCell.xib */; };
 		DE95D9EC20DC388F003BCB02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE95D9EB20DC388F003BCB02 /* AppDelegate.swift */; };
 		DE95D9EE20DC388F003BCB02 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE95D9ED20DC388F003BCB02 /* ViewController.swift */; };
 		DE95D9F120DC388F003BCB02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE95D9EF20DC388F003BCB02 /* Main.storyboard */; };
@@ -49,6 +55,12 @@
 		B6AB296B330D3AB6F12EB4BA /* Pods_RxMVVM2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxMVVM2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDCC0757CBA44862C5E07284 /* Pods-RxMVVM2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxMVVM2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxMVVM2Tests/Pods-RxMVVM2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		CFF1EEB0ADF1D0E1EDECA9A8 /* Pods-RxMVVM2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxMVVM2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxMVVM2UITests/Pods-RxMVVM2UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		DE7C85B720E11E8000C066E3 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		DE7C85B920E1230F00C066E3 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
+		DE7C85BC20E1234500C066E3 /* ContactsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsService.swift; sourceTree = "<group>"; };
+		DE7C85BF20E1236F00C066E3 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
+		DE7C85C220E1286900C066E3 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
+		DE7C85C320E1286900C066E3 /* ContactsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsTableViewCell.xib; sourceTree = "<group>"; };
 		DE95D9E820DC388F003BCB02 /* RxMVVM2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxMVVM2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE95D9EB20DC388F003BCB02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE95D9ED20DC388F003BCB02 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +132,60 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DE7C85B420E11B1F00C066E3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DE95D9EF20DC388F003BCB02 /* Main.storyboard */,
+				DE95D9F420DC3890003BCB02 /* LaunchScreen.storyboard */,
+				DEB405CD20DC634B00E8CAB4 /* TodoItemTableViewCell.xib */,
+				DE7C85C320E1286900C066E3 /* ContactsTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DE7C85B520E11B3400C066E3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DEB405CA20DC5FC200E8CAB4 /* TodoViewModel.swift */,
+				DE7C85B920E1230F00C066E3 /* ContactsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DE7C85B620E11BB900C066E3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DE95D9ED20DC388F003BCB02 /* ViewController.swift */,
+				DE7C85B720E11E8000C066E3 /* ContactsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DE7C85BB20E1233C00C066E3 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				DE7C85BC20E1234500C066E3 /* ContactsService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		DE7C85BE20E1236400C066E3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DE7C85BF20E1236F00C066E3 /* CountryModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DE7C85C120E1284800C066E3 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				DEB405CC20DC634B00E8CAB4 /* TodoItemTableViewCell.swift */,
+				DE7C85C220E1286900C066E3 /* ContactsTableViewCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
 		DE95D9DF20DC388F003BCB02 = {
 			isa = PBXGroup;
 			children = (
@@ -145,16 +211,16 @@
 		DE95D9EA20DC388F003BCB02 /* RxMVVM2 */ = {
 			isa = PBXGroup;
 			children = (
+				DE7C85C120E1284800C066E3 /* TableViewCells */,
+				DE7C85BE20E1236400C066E3 /* Model */,
+				DE7C85BB20E1233C00C066E3 /* Service */,
+				DE7C85B620E11BB900C066E3 /* ViewController */,
+				DE7C85B520E11B3400C066E3 /* ViewModel */,
+				DE7C85B420E11B1F00C066E3 /* View */,
 				DEBFE41020DD773200283934 /* Extensions */,
 				DE95D9EB20DC388F003BCB02 /* AppDelegate.swift */,
-				DE95D9ED20DC388F003BCB02 /* ViewController.swift */,
-				DE95D9EF20DC388F003BCB02 /* Main.storyboard */,
 				DE95D9F220DC3890003BCB02 /* Assets.xcassets */,
-				DE95D9F420DC3890003BCB02 /* LaunchScreen.storyboard */,
 				DE95D9F720DC3890003BCB02 /* Info.plist */,
-				DEB405CA20DC5FC200E8CAB4 /* TodoViewModel.swift */,
-				DEB405CC20DC634B00E8CAB4 /* TodoItemTableViewCell.swift */,
-				DEB405CD20DC634B00E8CAB4 /* TodoItemTableViewCell.xib */,
 			);
 			path = RxMVVM2;
 			sourceTree = "<group>";
@@ -297,6 +363,7 @@
 				DE95D9F320DC3890003BCB02 /* Assets.xcassets in Resources */,
 				DEB405CF20DC634B00E8CAB4 /* TodoItemTableViewCell.xib in Resources */,
 				DE95D9F120DC388F003BCB02 /* Main.storyboard in Resources */,
+				DE7C85C520E1286900C066E3 /* ContactsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,11 +465,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE7C85BD20E1234500C066E3 /* ContactsService.swift in Sources */,
 				DEB405CB20DC5FC200E8CAB4 /* TodoViewModel.swift in Sources */,
+				DE7C85C420E1286900C066E3 /* ContactsTableViewCell.swift in Sources */,
+				DE7C85C020E1236F00C066E3 /* CountryModel.swift in Sources */,
 				DE95D9EE20DC388F003BCB02 /* ViewController.swift in Sources */,
 				DEBFE41220DD773F00283934 /* StringExtensions.swift in Sources */,
+				DE7C85BA20E1230F00C066E3 /* ContactsViewModel.swift in Sources */,
 				DEB405CE20DC634B00E8CAB4 /* TodoItemTableViewCell.swift in Sources */,
 				DE95D9EC20DC388F003BCB02 /* AppDelegate.swift in Sources */,
+				DE7C85B820E11E8000C066E3 /* ContactsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
