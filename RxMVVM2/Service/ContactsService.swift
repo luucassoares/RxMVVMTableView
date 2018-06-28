@@ -16,7 +16,7 @@ class ContactsService {
     
     static func fetchModels() -> Single<[CountryModel]> {
         return Single<[CountryModel]>.create { single in
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
                 var models: [CountryModel] = []
                 
                 URLSession.shared.dataTask(with: URL(string: "https://restcountries.eu/rest/v2/all")!) { (data, response, error) in

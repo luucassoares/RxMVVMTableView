@@ -20,13 +20,37 @@ class ContactsViewController: UIViewController {
     
     @IBOutlet weak var amount: UILabel!
     
+   
+    
+    var actIndicator: UIActivityIndicatorView!
+    
     let contactVm = ContactsViewModel()
+    
+    lazy var searchController: UISearchController = ({
+        let controller = UISearchController(searchResultsController: nil)
+        controller.dimsBackgroundDuringPresentation = true
+        controller.searchBar.barStyle = UIBarStyle.black
+        controller.searchBar.barTintColor = UIColor.black
+        controller.searchBar.backgroundColor = UIColor.clear
+        controller.searchBar.placeholder = "search country"
+        return controller
+    })()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bindUI()
+        configureComponents()
         
+        
+        actIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        actIndicator.center = self.view.center
+        actIndicator.hidesWhenStopped = true
+        actIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        view.addSubview(actIndicator)
+        
+        
+        bindUI()
         contactVm.loadModels()
+      
         
         
 //      
@@ -40,18 +64,25 @@ class ContactsViewController: UIViewController {
     }
     
 
-    func bindUI () {
-        
+    func configureComponents() {
         let nib = UINib(nibName: "ContactsTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "tableCell")
         tableView.rowHeight = 97
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.title = "Países"
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    func bindUI () {
         
-        contactVm.countries.asDriver()
+       
+        
+        
+        contactVm.filterCountries.asDriver()
             .map { "\($0.count)" }
             .drive(amount.rx.text)
             .disposed(by: disposeBag)
         
-        contactVm.countries.asDriver()
+        contactVm.filterCountries.asDriver()
             .map{ $0 }
             .drive(tableView.rx.items(cellIdentifier: "tableCell", cellType: ContactsTableViewCell.self)) {
                 row, model, cell in
@@ -65,12 +96,34 @@ class ContactsViewController: UIViewController {
             
             let itemViewModel = self?.contactVm.countries.value[indexPath.row]
             
-            itemViewModel.map { print ($0.name!) }
+            itemViewModel.map { print("itemSelected \($0)") }
             
             
         }).disposed(by: disposeBag)
-   
-    
+        
+        tableView.rx.modelSelected(CountryModel.self)
+            .subscribe(onNext: { countryModel in
+                
+                print("Model selected \(countryModel)")
+            })
+                .disposed(by: disposeBag)
+        
+        let searchBar = searchController.searchBar
+        tableView.tableHeaderView = searchBar
+        tableView.contentOffset = CGPoint(x: 0, y: searchBar.frame.size.height)
+        
+        searchBar.rx.text
+        .orEmpty
+        .distinctUntilChanged()
+        .bind(to: contactVm.searchValue)
+        .disposed(by: disposeBag)
+        
+        
+        contactVm.showActivityIndicator.asDriver()
+            .drive(actIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+        
+
     }
 
 

@@ -17,7 +17,7 @@ struct CountryModel: Codable {
         self.region = region
     }
     
-    static func toString(with country: CountryModel) -> (String) {
+    func toString(with country: CountryModel) -> (String) {
         return "name: \(country.name ?? "Nulo") -  capital: \(country.capital ?? "Nulo") - region: \(country.region ?? "Nulo")"
     }
    
