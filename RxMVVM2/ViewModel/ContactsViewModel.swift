@@ -27,7 +27,7 @@ class ContactsViewModel {
                     
                     if value.isEmpty { return true }
                     
-                    return ($0.name?.lowercased().contains(value.lowercased()))!
+                    return (($0.name?.lowercased().contains(value.lowercased()))! || ($0.capital?.lowercased().contains(value.lowercased()))! || ($0.region?.lowercased().contains(value.lowercased()))!)
                     
                 })
                 }).bind(to: self.filterCountries).disposed(by: self.disposeBag)

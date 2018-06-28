@@ -93,30 +93,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Y80-Tn-Bu4">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="544"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTa-Gp-O4w">
-                                <rect key="frame" x="182" y="79" width="10.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZa-LG-tOT">
+                                <rect key="frame" x="0.0" y="608" width="375" height="59"/>
+                                <color key="backgroundColor" red="1" green="0.80125092350000005" blue="0.348932205" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Y80-Tn-Bu4" firstAttribute="bottom" secondItem="5F3-6T-oAS" secondAttribute="bottom" id="3Ch-y7-KLW"/>
-                            <constraint firstItem="Y80-Tn-Bu4" firstAttribute="trailing" secondItem="5F3-6T-oAS" secondAttribute="trailing" id="ExU-Id-vC2"/>
-                            <constraint firstItem="Y80-Tn-Bu4" firstAttribute="top" secondItem="dTa-Gp-O4w" secondAttribute="bottom" constant="8" id="OGM-NT-crx"/>
-                            <constraint firstItem="dTa-Gp-O4w" firstAttribute="top" secondItem="5F3-6T-oAS" secondAttribute="top" constant="15" id="Zcx-gc-V2Q"/>
-                            <constraint firstItem="Y80-Tn-Bu4" firstAttribute="leading" secondItem="5F3-6T-oAS" secondAttribute="leading" id="fnL-kA-IHS"/>
-                            <constraint firstItem="dTa-Gp-O4w" firstAttribute="centerX" secondItem="pah-wD-Cod" secondAttribute="centerX" id="yOB-eH-ugj"/>
+                            <constraint firstItem="wZa-LG-tOT" firstAttribute="bottom" secondItem="5F3-6T-oAS" secondAttribute="bottom" id="87W-MR-8KJ"/>
+                            <constraint firstItem="Y80-Tn-Bu4" firstAttribute="top" secondItem="5F3-6T-oAS" secondAttribute="top" id="8dn-e9-ugq"/>
+                            <constraint firstAttribute="bottom" secondItem="Y80-Tn-Bu4" secondAttribute="bottom" constant="59" id="9el-FK-dz8"/>
+                            <constraint firstItem="Y80-Tn-Bu4" firstAttribute="trailing" secondItem="5F3-6T-oAS" secondAttribute="trailing" id="XCn-To-wGm"/>
+                            <constraint firstItem="wZa-LG-tOT" firstAttribute="top" secondItem="Y80-Tn-Bu4" secondAttribute="bottom" id="Xol-sW-LKc"/>
+                            <constraint firstItem="Y80-Tn-Bu4" firstAttribute="leading" secondItem="5F3-6T-oAS" secondAttribute="leading" id="k8o-vm-DcL"/>
+                            <constraint firstItem="wZa-LG-tOT" firstAttribute="trailing" secondItem="5F3-6T-oAS" secondAttribute="trailing" id="ptF-Pa-DRc"/>
+                            <constraint firstItem="wZa-LG-tOT" firstAttribute="leading" secondItem="5F3-6T-oAS" secondAttribute="leading" id="tEL-T9-FxP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5F3-6T-oAS"/>
                     </view>
                     <navigationItem key="navigationItem" id="LCw-hm-6qk"/>
                     <connections>
-                        <outlet property="amount" destination="dTa-Gp-O4w" id="Eqh-Bd-Y8K"/>
+                        <outlet property="amount" destination="wZa-LG-tOT" id="lyd-u9-9qp"/>
                         <outlet property="tableView" destination="Y80-Tn-Bu4" id="sJe-ob-UYp"/>
                     </connections>
                 </viewController>
