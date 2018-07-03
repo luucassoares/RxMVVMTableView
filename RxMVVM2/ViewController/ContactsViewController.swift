@@ -26,13 +26,15 @@ class ContactsViewController: UIViewController {
     
     let contactVm = ContactsViewModel()
     
+    var selectedName: String?
+    
+    
     lazy var searchController: UISearchController = ({
         let controller = UISearchController(searchResultsController: nil)
         controller.dimsBackgroundDuringPresentation = true
-        controller.searchBar.barStyle = UIBarStyle.black
-        controller.searchBar.barTintColor = UIColor.black
         controller.searchBar.backgroundColor = UIColor.clear
         controller.searchBar.placeholder = "search country"
+//        controller.searchBar.text = "Braz"
         return controller
     })()
     
@@ -41,12 +43,12 @@ class ContactsViewController: UIViewController {
         configureComponents()
         
         
-        actIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        actIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
+      
         actIndicator.center = self.view.center
         actIndicator.hidesWhenStopped = true
-        actIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        actIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
         view.addSubview(actIndicator)
-        
         
         bindUI()
         contactVm.loadModels()
@@ -95,8 +97,11 @@ class ContactsViewController: UIViewController {
         tableView.rx.itemSelected.subscribe(onNext: {[weak self] indexPath in
             
             let itemViewModel = self?.contactVm.countries.value[indexPath.row]
-            
-            itemViewModel.map { print("itemSelected \($0)") }
+
+//            itemViewModel.map {
+//                print("itemSelected \($0)")
+//
+//            }
             
             
         }).disposed(by: disposeBag)
@@ -104,7 +109,13 @@ class ContactsViewController: UIViewController {
         tableView.rx.modelSelected(CountryModel.self)
             .subscribe(onNext: { countryModel in
                 
-                print("Model selected \(countryModel)")
+//                print("Model selected \(countryModel)")
+                //self.contactVm.loadDetail(countryModel: countryModel)
+                self.selectedName = countryModel.name
+               self.performSegue(withIdentifier: "fromTableToDetail", sender: self)
+            
+          
+                
             })
                 .disposed(by: disposeBag)
         
@@ -123,8 +134,24 @@ class ContactsViewController: UIViewController {
             .drive(actIndicator.rx.isAnimating)
             .disposed(by: disposeBag)
         
+//        contactVm.resultDetail.asObservable()
+//            .bind(onNext: { (item) in
+//                print("onNext Bind \(item.count)")
+//
+//            })
+//        .disposed(by: disposeBag)
+        
+  
+     
+    
+        
 
     }
 
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let next = segue.destination as? DetalheViewController {
+            next.receivedName = selectedName
+        }
+    }
+    
 }

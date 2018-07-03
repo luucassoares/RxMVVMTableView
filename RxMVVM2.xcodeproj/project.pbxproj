@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		691D3637A38CD3CA0AD7B722 /* Pods_RxMVVM2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6AB296B330D3AB6F12EB4BA /* Pods_RxMVVM2.framework */; };
+		DE473D7E20E536A1002FC030 /* DetalheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE473D7D20E536A1002FC030 /* DetalheViewController.swift */; };
 		DE7C85B820E11E8000C066E3 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7C85B720E11E8000C066E3 /* ContactsViewController.swift */; };
 		DE7C85BA20E1230F00C066E3 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7C85B920E1230F00C066E3 /* ContactsViewModel.swift */; };
 		DE7C85BD20E1234500C066E3 /* ContactsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7C85BC20E1234500C066E3 /* ContactsService.swift */; };
 		DE7C85C020E1236F00C066E3 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7C85BF20E1236F00C066E3 /* CountryModel.swift */; };
 		DE7C85C420E1286900C066E3 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7C85C220E1286900C066E3 /* ContactsTableViewCell.swift */; };
 		DE7C85C520E1286900C066E3 /* ContactsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE7C85C320E1286900C066E3 /* ContactsTableViewCell.xib */; };
+		DE834E2120EBFDED00D82DE3 /* CountryDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE834E2020EBFDED00D82DE3 /* CountryDetailModel.swift */; };
+		DE834E2520EC17D800D82DE3 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE834E2420EC17D800D82DE3 /* DetailViewModel.swift */; };
 		DE95D9EC20DC388F003BCB02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE95D9EB20DC388F003BCB02 /* AppDelegate.swift */; };
 		DE95D9EE20DC388F003BCB02 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE95D9ED20DC388F003BCB02 /* ViewController.swift */; };
 		DE95D9F120DC388F003BCB02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE95D9EF20DC388F003BCB02 /* Main.storyboard */; };
@@ -55,12 +58,15 @@
 		B6AB296B330D3AB6F12EB4BA /* Pods_RxMVVM2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxMVVM2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDCC0757CBA44862C5E07284 /* Pods-RxMVVM2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxMVVM2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxMVVM2Tests/Pods-RxMVVM2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		CFF1EEB0ADF1D0E1EDECA9A8 /* Pods-RxMVVM2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxMVVM2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxMVVM2UITests/Pods-RxMVVM2UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		DE473D7D20E536A1002FC030 /* DetalheViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalheViewController.swift; sourceTree = "<group>"; };
 		DE7C85B720E11E8000C066E3 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		DE7C85B920E1230F00C066E3 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		DE7C85BC20E1234500C066E3 /* ContactsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsService.swift; sourceTree = "<group>"; };
 		DE7C85BF20E1236F00C066E3 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		DE7C85C220E1286900C066E3 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
 		DE7C85C320E1286900C066E3 /* ContactsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsTableViewCell.xib; sourceTree = "<group>"; };
+		DE834E2020EBFDED00D82DE3 /* CountryDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailModel.swift; sourceTree = "<group>"; };
+		DE834E2420EC17D800D82DE3 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		DE95D9E820DC388F003BCB02 /* RxMVVM2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxMVVM2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE95D9EB20DC388F003BCB02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE95D9ED20DC388F003BCB02 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +154,7 @@
 			children = (
 				DEB405CA20DC5FC200E8CAB4 /* TodoViewModel.swift */,
 				DE7C85B920E1230F00C066E3 /* ContactsViewModel.swift */,
+				DE834E2420EC17D800D82DE3 /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -157,6 +164,7 @@
 			children = (
 				DE95D9ED20DC388F003BCB02 /* ViewController.swift */,
 				DE7C85B720E11E8000C066E3 /* ContactsViewController.swift */,
+				DE473D7D20E536A1002FC030 /* DetalheViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -173,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				DE7C85BF20E1236F00C066E3 /* CountryModel.swift */,
+				DE834E2020EBFDED00D82DE3 /* CountryDetailModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -468,10 +477,13 @@
 				DE7C85BD20E1234500C066E3 /* ContactsService.swift in Sources */,
 				DEB405CB20DC5FC200E8CAB4 /* TodoViewModel.swift in Sources */,
 				DE7C85C420E1286900C066E3 /* ContactsTableViewCell.swift in Sources */,
+				DE473D7E20E536A1002FC030 /* DetalheViewController.swift in Sources */,
 				DE7C85C020E1236F00C066E3 /* CountryModel.swift in Sources */,
 				DE95D9EE20DC388F003BCB02 /* ViewController.swift in Sources */,
 				DEBFE41220DD773F00283934 /* StringExtensions.swift in Sources */,
+				DE834E2120EBFDED00D82DE3 /* CountryDetailModel.swift in Sources */,
 				DE7C85BA20E1230F00C066E3 /* ContactsViewModel.swift in Sources */,
+				DE834E2520EC17D800D82DE3 /* DetailViewModel.swift in Sources */,
 				DEB405CE20DC634B00E8CAB4 /* TodoItemTableViewCell.swift in Sources */,
 				DE95D9EC20DC388F003BCB02 /* AppDelegate.swift in Sources */,
 				DE7C85B820E11E8000C066E3 /* ContactsViewController.swift in Sources */,

@@ -39,10 +39,7 @@ class ViewController: UIViewController {
     }
     
     func bindUI () {
-        //        viewModel?.items.asObservable().bind(to: tablewViewItems.rx.items(cellIdentifier: identifier, cellType: TodoItemTableViewCell.self)) { index, item, cell in
-        //            cell.configure(withViewModel: item)
-        //
-        //            }.disposed(by: disposeBag)
+    
         
         viewModel.items.asDriver().drive(
         tablewViewItems.rx.items(cellIdentifier: identifier, cellType: TodoItemTableViewCell.self)) { row, model, cell in

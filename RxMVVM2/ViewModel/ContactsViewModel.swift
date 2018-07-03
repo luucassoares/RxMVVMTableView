@@ -18,6 +18,8 @@ class ContactsViewModel {
     lazy var countryObs: Observable<[CountryModel]>  = self.countries.asObservable()
     lazy var filterCountryObs: Observable<[CountryModel]>  = self.filterCountries.asObservable()
     let disposeBag = DisposeBag()
+    var resultDetail = Variable<[CountryDetailModel]>([])
+    
     
     init () {
         searchValueObs
@@ -47,6 +49,8 @@ class ContactsViewModel {
             })
             .disposed(by: disposeBag)
     }
+    
+ 
     
 }
 
