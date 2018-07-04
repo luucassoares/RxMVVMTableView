@@ -37,11 +37,12 @@ class ContactsService {
             DispatchQueue.main.async {
                 var model: [CountryDetailModel] = []
                 
-                let url = URL(string: "https://restcountries.eu/rest/v2/name/\(countryName)")!
+                let url = URL(string: "https://restcountries.eu/rest/v2/name/\(countryName.utf8)")!
                 URLSession.shared.dataTask(with: url) { (data, response, error) in
                     
                     
                     model = try! JSONDecoder().decode([CountryDetailModel].self, from: data!)
+                    
                     
                     single(.success(model))
                     }.resume()

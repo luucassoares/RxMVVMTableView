@@ -28,6 +28,8 @@ class DetailViewModel {
             .subscribe(onSuccess: { fetchData in
                
                 self.resultFromApi.value = fetchData[0]
+                //print(fetchData[0])
+         
                 
                 
             })

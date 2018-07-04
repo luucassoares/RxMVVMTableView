@@ -19,6 +19,9 @@ class DetalheViewController: UIViewController {
     @IBOutlet weak var region: UILabel!
     @IBOutlet weak var subRegion: UILabel!
     @IBOutlet weak var population: UILabel!
+    @IBOutlet weak var borders: UILabel!
+    @IBOutlet weak var demonym: UILabel!
+    @IBOutlet weak var currencies: UILabel!
     
     var detailVM: DetailViewModel?
     
@@ -26,6 +29,8 @@ class DetalheViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title?.append(" \(receivedName ?? "404")")
         
         detailVM = DetailViewModel(countryName: receivedName!)
         
@@ -35,11 +40,15 @@ class DetalheViewController: UIViewController {
         detailVM?.resultFromApi.asDriver()
             .map{$0}
             .drive(onNext: {(item) in
-                                self.name.text = item.name ?? "Nao informado"
-                                self.capital.text = item.capital ?? "Nao Informado"
-                                self.region.text = item.region ?? "Nao informado"
-                                self.subRegion.text = item.subregion ?? "Nao informado"
-                                self.population.text = "\(item.population ?? -1)"
+                self.name.text = "Nome: \(item.name ?? "Nao informado")"
+                self.capital.text = "Capital: \(item.capital ?? "Nao Informado")"
+                self.region.text = "Região: \(item.region ?? "Nao informado")"
+                self.subRegion.text = "Sub região: \(item.subregion ?? "Nao informado")"
+                self.population.text = "Populaçao: \(item.population ?? -1)"
+                self.borders.text = "Fronteiras: \(item.borders.map {$0}?.joined(separator: ", ") ?? "Sem fronteira")"
+                self.demonym.text = "Demonym: \(item.demonym ?? "Náo informado")"
+                let s = item.currencies?.first
+                self.currencies.text = "Currencies: \(s.map { return "\($0["name"] ?? "Sem nome"), \($0["code"] ?? "Sem codigo"), \($0["symbol"] ?? "Sem simbolo")"} ?? "Falha no map")"
             }, onCompleted: {
                 print("completed")
             }, onDisposed: {
